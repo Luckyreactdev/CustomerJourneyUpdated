@@ -1,0 +1,237 @@
+.habotech-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.habotech-quest-cont {
+  margin: auto 5%;
+}
+.habot-tech-profile {
+  margin: 19px 0px 0px 0px;
+}
+.verified-habotech {
+  border: 1px solid #000 !important;
+  background-color: #072f57;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 8px;
+  width: 195px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+
+.verified-habotech:hover {
+  background-color: #f5f5f5 !important;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2) !important;
+  color: #000 !important;
+  transition: all ease-out 0.3s;
+  border: 1px solid #000 !important;
+}
+.faq-ans {
+  font-size: 13px;
+}
+
+.techFaq-margin {
+  background-color: rgba(225, 244, 255, 1);
+  margin-bottom: 10px;
+  padding: 1.5% 4%;
+  border-bottom-left-radius: 17px;
+  border-top-right-radius: 17px;
+  font-size: 14px;
+}
+.techFaqPlus {
+  float: right;
+}
+.haboTech-textarea {
+  background-color: rgba(225, 244, 255, 0.35);
+}
+.haboTech-text {
+  background-color: rgba(225, 244, 255, 0.35);
+  border: 1px solid #072f57;
+}
+
+.haboTech-text:focus {
+  background-color: rgba(225, 244, 255, 0.35) !important;
+}
+.haboTech-textarea:focus {
+  background-color: rgba(225, 244, 255, 0.35) !important;
+}
+.not-answered-message {
+  color: gray;
+  font-style: italic;
+  margin-top: 5px;
+}
+.Habotech-form {
+  margin-left: 10%;
+}
+.habotech-profile {
+  margin: 0 0 0 2.4em;
+}
+.habotech-profile-dashboard {
+  margin: 0 0 0 1.4em;
+}
+@media (max-width: 768px) {
+  .Habotech-form {
+    margin-left: 0px;
+  }
+  .habotech-web-pro {
+    display: none;
+  }
+  .habotech-profile {
+    margin: 0%;
+  }
+  .habotech-profile-dashboard{
+    margin: 0%;
+  }
+  .Habotech-tabs {
+    text-align: center;
+    line-height: initial;
+    font-size: 14px;
+  }
+}
+.Habotech-tabs {
+  display: block;
+  background: transparent;
+}
+.habotech-upper-cont {
+  width: 280px;
+}
+
+@media (max-width: 575px) {
+  .DCDF_container {
+    margin-top: 70px;
+  }
+  .habotech-quest-cont {
+    margin-top: 70px;
+  }
+  .habotech-profile {
+    margin: 0px 0px 0px 0px;
+  }
+  .habotech-profile-dashboard{
+    margin: 0px;
+  }
+}
+/* .Habotech-tabs .nav-link {
+  padding-left: 10px;
+} */
+
+.habotech-signin {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+.haboTech-search {
+  width: 50%;
+}
+.habotech-summary {
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.5% 4% 1.8% 5% !important;
+}
+@media (max-width: 992px) {
+  .habot-tech-profile {
+    margin: 5% 1% 5% 1%;
+  }
+}
+.habotech-appbar-container {
+  transition: 0.3s ease;
+  position: sticky;
+  z-index: 1000;
+  background-color: #f5f8fd;
+  /* box-shadow: 0px 4px 40px 0px rgb(194 194 194 / 55%); */
+  width: 75%;
+  float: right;
+  border-bottom-right-radius: 22px;
+  border-bottom-left-radius: 22px;
+}
+
+@media (min-width: 0px) and (max-width: 991px) {
+  .haboTech-search {
+    width: -webkit-fill-available;
+  }
+  .haboTech-search::placeholder{
+    font-size: 14px;
+  }
+  .haboTech-textarea::placeholder{
+    font-size: 14px;
+  }
+  .habotech-appLogo {
+    width: auto !important;
+    height: 55px;
+    margin-top: -3px;
+  }
+  .habotech-appbar-container {
+    top: 0 !important;
+    margin: 0;
+    display: block;
+    height: auto;
+    float: initial !important;
+    width: 100% !important;
+  }
+  .habotech-appLogo {
+    display: none;
+  }
+  .habotech-container {
+    max-width: 100%;
+    margin: 0px !important;
+  }
+}
+.habotech-appLogo {
+  top: 5px;
+  left: 95px;
+  position: relative;
+  width: auto !important;
+  height: 80px;
+}
+.habotech-sidebar {
+  background-color: rgba(245, 248, 253, 1);
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  height: 500px;
+  width: 250px;
+  font-size: 14px;
+}
+@media (max-width: 900px) {
+  .habotech-sidebar {
+    display: contents;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .DCDF_container {
+    margin-top: 365px;
+  }
+  .habotech-set {
+    position: relative;
+    top: -30px !important;
+  }
+  .habot-side-title {
+    margin-top: 50px;
+  }
+}
+@media (min-width: 2000px) {
+  .habotech-appbar-container {
+    width: 85% !important;
+  }
+}
+.habotech-set {
+  position: relative;
+  top: -15px;
+}
+@media (min-width: 1725px) {
+  .habotech-appbar-container {
+    width: 82%;
+  }
+}
+
+.Habotech-tabs svg {
+  width: 20px;
+  height: 20px;
+  margin-bottom: 4px;
+  margin-right: 5px;
+}
+
+.Habotech-tabs.active svg {
+  color: white;
+}

@@ -1,0 +1,185 @@
+.overview-container {
+    width: 95%;
+    border: 1px solid rgba(166, 166, 166, 0.45);
+    border-radius: 10px;
+    border-radius: 6px;
+    margin: 3px auto;
+    text-align: left;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+  
+  .overview-heading {
+    font-weight: 700;
+    font-size: 21px;
+    line-height: 38px;
+    padding: 8px 0px 0px 32px;
+  }
+  
+  .overview-card-section {
+    display: flex;
+    padding: 5px 10px 20px 8px;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+  
+  /* Styles for over card */
+  @media (min-width: 1405px) and (max-width: 1600px) {
+    .card-containerStaff {
+      width: 400px !important;
+    }
+  }
+  @media (min-width: 1600px) and (max-width: 2000px) {
+    .card-containerStaff {
+      width: 490px !important;
+    }
+  }
+  @media (min-width: 2000px) and (max-width: 4620px) {
+    .card-containerStaff {
+      width: 600px !important;
+    }
+  }
+  
+  .card-container {
+    height: 10em;
+    width: 17em;
+    background: rgba(143, 183, 225, 0.5);
+    border-radius: 10px;
+    padding: 15px 10px;
+    margin-bottom: 10px;
+  }
+  .card-containerStaff {
+    height: auto;
+    width: 350px;
+    background: rgba(143, 183, 225, 0.5);
+    border-radius: 10px;
+    padding: 15px 10px;
+    margin-bottom: 10px;
+  }
+  .card-container1 {
+    height: 13em !important;
+    border-radius: 10px !important;
+    margin-bottom: 10px !important;
+    border: none !important;
+    border-top-right-radius: 1px !important;
+  }
+  
+  .card-count {
+    font-weight: 700;
+    font-size: 25px;
+    line-height: 41px;
+    margin-top: 3px;
+    margin-left: 5px;
+  }
+  
+  .card-title {
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 38px;
+    color: rgb(48, 48, 48);
+    margin-top: 12px;
+  }
+  
+  .card-subText {
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 19px;
+    color: rgb(49, 49, 49);
+    margin-top: 12px;
+  }
+  @media only screen and (max-width: 768px) {
+    .card-container {
+      height: 12em;
+      width: 11em;
+      border-radius: 10px;
+      padding: 1em 1em;
+      margin-bottom: 1em;
+    }
+    .habotech-web-pro{
+      display: none;
+    }
+    .card-container1 {
+      height: 10em;
+      width: 11em;
+      border-radius: 10px;
+      padding: 0em 1em;
+      margin-bottom: 1em;
+    }
+    .card-containerStaff {
+      height: 10em;
+      width: 11em;
+      border-radius: 10px;
+      padding: 1em 1em;
+      margin-bottom: 1em;
+    }
+    .card-count {
+      font-weight: 700;
+      margin-top: 3px;
+      font-size: 18px;
+      line-height: 22px;
+    }
+  
+    .card-title {
+      font-weight: 700;
+      font-size: 16px;
+      line-height: 22px;
+      color: #ffffff;
+    }
+  
+    .card-subText {
+      font-size: 14px;
+      line-height: 15px;
+      color: rgb(49, 49, 49);
+    }
+    .cardSubContImg {
+      font-size: 30px !important;
+      height: 30px !important;
+      width: 30px !important;
+      margin-left: -3px;
+    }
+  }
+  
+  @media (min-width: 0px) and (max-width: 415px) {
+    .overview-card-section {
+      padding: 0px 8px 1px 8px;
+    }
+    .card-container {
+      width: 20em;
+      height: 9em;
+    }
+    .card-container1 {
+      width: 20em;
+      height: 9em;
+    }
+    .card-containerStaff {
+      width: 20em;
+      height: 9em;
+    }
+    .overview-heading {
+      font-size: 18px;
+      padding: 5px 0px 0px 12px;
+    }
+  }
+  
+  @media (min-width: 0px) and (max-width: 557px) {
+    .overview-container {
+      width: auto;
+      margin: 0px 5px;
+    }
+  }
+  
+  .cardSubContainer {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  .cardSubContImg {
+    font-size: 30px;
+    height: 35px;
+    width: 35px;
+  }
+  
+  .cardStaffSelect {
+    border: transparent;
+    background: transparent;
+  }
+  

@@ -1,0 +1,340 @@
+.signin-page {
+    background-color: white;
+    height: auto;
+    width: 100%;
+  }
+  .signin-container {
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 100px;
+    padding-bottom: 130px;
+  }
+  .sign-in-back {
+    margin-top: -45px !important;
+    margin-left: -3px !important;
+  }
+  .signinBox {
+    background-color: #fff;
+    height: auto;
+    width: auto;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    position: relative;
+  }
+  .wlc-sign {
+    margin-bottom: 0;
+    font-size: 25px;
+    font-weight: 1000;
+    color: #000;
+  }
+  .wlc-sign-card {
+    margin-bottom: 0;
+    font-size: 21px;
+    font-weight: 1000;
+    color: #000;
+  }
+  .habot {
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient(180deg, #8fb7e1 0%, #072f57 100%);
+  }
+  .sub-title {
+    font-size: 21px;
+    position: relative;
+    font-weight: 500;
+  }
+  .asterisk {
+    font-size: 16px !important;
+  }
+  .google-btn {
+    color: #fff;
+    background-color: rgba(7, 47, 87, 1);
+    border: none;
+    border-radius: 5px;
+    width: 382px;
+    height: 59px;
+    border-radius: 6px;
+  }
+  .or {
+    font-size: 25px;
+    font-weight: 700;
+    position: relative;
+    width: 375px;
+    text-align: center;
+  }
+  .or-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 10px;
+  }
+  .or::before {
+    content: "";
+    background-color: #333;
+    height: 1px;
+    width: 40%;
+    position: absolute;
+    top: 20px;
+    left: 0;
+  }
+  .or::after {
+    content: "";
+    background-color: #333;
+    height: 1px;
+    width: 40%;
+    position: absolute;
+    top: 20px;
+    right: 0;
+  }
+  .login-container {
+    width: 100%;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+  }
+  .login-frm {
+    width: 375px;
+  }
+  .login-frm p {
+    margin-bottom: 3px;
+    margin-top: 15px;
+  }
+  .login-field {
+    font-size: 11px;
+    margin-top: 0px !important;
+    width: 100%;
+    background-color: #f9f9f9;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 6px 8px 30px;
+    outline: none;
+  }
+  .login-field::placeholder {
+    font-size: 14px;
+  }
+  .login-field-error-label {
+    padding: 8px 6px 8px 30px;
+    font-size: 11px;
+    margin-top: 0px !important;
+    width: 100%;
+    background-color: #f9f9f9;
+    border: none;
+    border-radius: 5px;
+    outline: none;
+  }
+  /* .login-field-error:focus {
+    border: 1px solid #bab7b7;
+  } */
+  .password-eye {
+    position: relative;
+  }
+  .hide-btn {
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    top: 5%;
+    right: 10px;
+    color: #888;
+  }
+  .hide-btn-signin {
+    position: absolute;
+    border: none;
+    background-color: transparent;
+    top: 10%;
+    right: 5%;
+    color: #888;
+  }
+  .signin {
+    text-align: center;
+    width: 150px;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%, +50%);
+    background-color: #072f57;
+    color: #fff;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 5px;
+    top: 20px;
+  }
+  .fgt-pass-btn {
+    text-align: right;
+    float: right;
+    position: relative;
+    top: 5px;
+    font-size: 14px;
+  }
+  
+  /* arrow// */
+  .white-continer {
+    position: relative;
+  }
+  .arrow-back-btn {
+    position: absolute;
+    left: 0;
+    top: 20px;
+    color: #111;
+    font-size: 20px;
+  }
+  
+  /* responsive============================ */
+  
+  @media only screen and (max-width: 768px) {
+    .signHideBtn {
+      margin-top: 3px !important;
+    }
+    .signin-page {
+      background: #fff;
+      height: 100%;
+      width: 100%;
+    }
+    .signin-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding-top: 0;
+      padding-bottom: 130px;
+    }
+    .signinBox {
+      background-color: #fff;
+      height: 100%;
+      width: 100%;
+      box-shadow: none;
+      border-radius: 0px;
+      position: relative;
+      margin-top: 40px;
+    }
+  
+    .arrow-back-btn {
+      position: absolute;
+      left: 16px;
+      top: 5px;
+      color: #111;
+      font-size: 21px;
+    }
+  
+    .wlc-sign {
+      font-size: 25px;
+      font-weight: 600;
+    }
+    .habot {
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      background-image: linear-gradient(180deg, #000000 0%, #000000 100%);
+    }
+    .sub-title {
+      font-size: 13px;
+      position: relative;
+      font-weight: 400;
+      color: #0a5995;
+    }
+    .google-btn {
+      color: #fff;
+      background-color: rgba(7, 47, 87, 1);
+      border: none;
+      border-radius: 5px;
+      width: 220px;
+      height: 49px;
+      border-radius: 6px;
+    }
+    .or {
+      font-size: 18px;
+      font-weight: 700;
+      position: relative;
+      width: 250px;
+      text-align: center;
+    }
+    .or-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      margin-top: 20px;
+    }
+    .or::before {
+      content: "";
+      background-color: #333;
+      height: 1px;
+      width: 40%;
+      position: absolute;
+      top: 15px;
+      left: 0;
+    }
+    .or::after {
+      content: "";
+      background-color: #333;
+      height: 1px;
+      width: 40%;
+      position: absolute;
+      top: 15px;
+      right: 0;
+    }
+    .login-container {
+      width: 100%;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin-top: -40px;
+    }
+    .login-frm {
+      margin-top: 50px;
+      width: 280px;
+    }
+    .login-field {
+      font-size: 11px;
+      margin-top: 0px !important;
+      width: 100%;
+      background-color: #f9f9f9;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 6px 8px 30px;
+      outline: none;
+    }
+  }
+  
+  .navbar-toggler:focus,
+  .navbar-toggler:active,
+  .navbar-toggler-icon:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  .wlcHeader {
+    text-align: center;
+  }
+  
+  @media only screen and (max-width: 350px) {
+    .wlc-sign {
+      font-size: 23px;
+      font-weight: 600;
+    }
+  }
+  
+  .error-messageSignUp {
+    color: red;
+    font-size: 11px;
+    position: relative;
+    top: -15px;
+  }
+  
+  .review-bottom {
+    margin-bottom: 300px;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 20px;
+  }
+  
+  .DCDF_signup{
+    margin-top: 20px;
+    display: inline-block;
+  }

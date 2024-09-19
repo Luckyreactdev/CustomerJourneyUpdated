@@ -1,0 +1,144 @@
+.adminDashboardPage {
+  margin-bottom: 30px;
+}
+
+.adminFooter {
+  background-color: #072f57;
+  color: white;
+  font-size: 15px;  
+  align-items: center;
+}
+
+
+.txTableHistory th {
+  background-color:  #072f57;
+  border:  #072f57;
+}
+
+.feedbackTable th {
+  background-color:  #072f57;
+  border:  #072f57;
+}
+
+.banner-body1 {
+  width: 100%;
+  flex: 0.7 1;
+  text-align: left;
+}
+
+.chartDetails{
+    width: 95%;
+    background: #FFFFFF;
+    border: 1px solid rgba(166, 166, 166, 0.45);
+    border-radius: 10px;
+    margin-top: 50px;
+    margin-bottom: 30px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.chartMainHeading {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cardAdmin {
+  width: 20em !important;
+}
+
+.fa-right-from-bracket {
+  font-size: 21px;
+  margin: 2px 6px;
+}
+
+.adminSignOut {
+  padding-left: 10px;
+  height: 20px;
+}
+
+.nav-items {
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 768px) {
+
+    .adminFooterBottom{
+      padding-bottom: 90px;
+    }
+    .adminBottomMargin{
+        margin-bottom: 20px !important;
+    }
+    .adminAllButtons{
+       font-size: small !important;
+      }
+      .supplierBottomMargin{
+        margin-bottom: 0px !important;
+      }
+      .adminMessageList .has-search .form-control{
+        width: -webkit-fill-available !important; 
+      }
+  }
+  .adminBottomMargin {
+    margin-bottom: 20px;
+  }
+
+
+@media only screen and (max-width: 991px) {
+  .adminNavMobileLink {
+    margin-bottom: 0px;
+  }
+}
+
+.adminNavItems {
+  padding-bottom: 0px !important;
+}
+
+.tableOverFlow::-webkit-scrollbar {
+  height: 6px;
+}
+
+.tableOverFlow::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+.tableOverFlow::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: #263238;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+.tableOverFlow::-webkit-scrollbar-thumb:window-inactive {
+  background: #263238;
+}
+
+.adminAllButtons {
+  border: 1px solid black;
+  color: black;
+  background-color: white;
+  border-radius: 3px;
+  line-height: initial;
+  padding: 4px;
+  width: max-content;
+}
+.adminAllButtons:hover {
+  color: white;
+  background-color: #072f57;
+  transition: 0.3s;
+}
+
+@media (min-width: 0px) and (max-width: 425px) {
+  .mobileSearchField{
+    display: contents !important;
+  }
+  .mobileSearchInput{
+    width: -webkit-fill-available !important;
+  margin-bottom: -15px;
+  }
+  .mobileBuyerList{
+    margin-bottom: -40px !important;
+  }
+}

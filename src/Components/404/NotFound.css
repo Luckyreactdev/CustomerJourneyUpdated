@@ -1,0 +1,32 @@
+.not-found-container {
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.not-found-content {
+  text-align: center;
+}
+
+.return-button {
+  display: inline-block;
+  background-color: #072f57;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+.return-button:hover {
+  display: inline-block;
+  background-color: #072f57;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 5px;
+  text-decoration: none;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}

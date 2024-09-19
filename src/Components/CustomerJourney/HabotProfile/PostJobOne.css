@@ -1,0 +1,115 @@
+.job-input-field{
+    width: 100%;
+    background: #FAFAFA;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+    padding: 10px;
+    outline: none;
+}
+
+.text-start-jobPost {
+    padding: 4rem 5rem 5rem 3rem !important;
+}
+
+
+.text-area-job{
+    width: 100%;
+    background: #FAFAFA;
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    border-radius: 8px;
+    padding: 10px;
+    outline: none;
+}
+.job-proceed-btn{
+    background-color:rgba(7, 47, 87, 1);
+    color: #fff;
+    border: 1px solid #000;
+    padding: 8px 15px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+.job-proceed-btn:hover {
+    background-color: #f5f5f5; 
+    box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+    color: #000;
+    }
+.job-proceed-btn:hover .JobPostlinkText {
+    color: rgb(0, 0, 0) !important;
+  }
+  
+  .JobPostlinkText {
+    color: white !important;
+  }
+.post-job-img{
+    width: 100%;
+}
+.post-job-img img{
+    height: 65%;
+    margin-top: 100px;
+    width: 100%;
+}
+.job-back-btn{
+    background-color: transparent;
+    border: 1px solid #000;
+    padding: 9px;
+    width: auto;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: 500;
+    margin-right: 10px;
+}
+.tags{
+    border: 1px solid #9d9999;
+    padding: 5px;
+    border-radius: 5px;
+    margin-right: 10px;
+    line-height: 43px;
+}
+
+
+@media only screen and (max-width: 768px){
+    .post-job-img{
+        width: 100%;
+        display: none;
+    } 
+}
+
+@media (min-width: 0px) and (max-width: 425px) {
+    .text-start-jobPost {
+        padding: 1rem 0rem 5rem 0rem !important;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .text-start-jobPost {
+        padding: 4rem 0rem 5rem 0rem !important;
+    }
+}
+.serviceTagPublic {
+    border: 1px solid rgb(237, 237, 237);
+    background-color: #f9f8f8;
+    border-radius: 3px;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding-left: 6px !important;
+    font-size: 14px;
+  }
+  
+  .serviceTagPublic li {
+    box-shadow: 2px 0px 2px rgba(212, 212, 212, 0.4);    background-color: white;
+    padding: 2px;
+    margin: 5px 10px 5px 0px;
+    border-radius: 2px;
+  }
+  
+  .serviceButton{
+    border-radius: 2px;
+    border: 1px solid #072F57;
+    margin-left: 10px;
+    background-color: #072F57;
+    box-shadow: 2px 0px 2px #072F57;  
+    color: white;
+  }

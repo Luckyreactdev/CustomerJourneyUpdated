@@ -1,0 +1,74 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("https://storage.googleapis.com/varal-habot-vault-marketplace-10032022/fonts/Montserrat-Regular.ttf")
+      format("woff2"),
+    url("https://storage.googleapis.com/varal-habot-vault-marketplace-10032022/fonts/Montserrat-Regular.ttf")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+body {
+  background-color: #fff;
+  margin: 0;
+  font-family: "Montserrat";
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: "Montserrat";
+}
+@media only screen and (max-width: 991px) {
+  .dtwidget-chat-container {
+    bottom: 75px !important;
+  }
+}
+.dtwidget-chatmodal-header > span {
+  font-family: "Montserrat";
+}
+.dtwidget-chatmodal-body > form > div > textarea,
+.dtwidget-chatmodal-body > [data-form="dt"] > div > textarea {
+  font-family: "Montserrat";
+}
+.dtwidget-chatmodal-body > form > button,
+.dtwidget-chatmodal-body > form > [data-role="button"],
+.dtwidget-chatmodal-body > [data-form="dt"] > button,
+.dtwidget-chatmodal-body > [data-form="dt"] > [data-role="button"] {
+  font-family: "Montserrat";
+}
+.dtwidget-chatmodal-footer {
+  display: none !important;
+}
+.job-cont {
+  overflow-x: auto; /* Allow horizontal scrolling */
+  overflow-y: hidden; /* Hide vertical scrolling */
+  scrollbar-width: thin; /* Firefox: Make the scrollbar thin */
+  scrollbar-color: #888 transparent; /* Firefox: Scrollbar color */
+
+  /* For Webkit browsers (Chrome, Safari, Edge) */
+}
+
+.job-cont::-webkit-scrollbar {
+  height: 5px; /* Set the height of the horizontal scrollbar */
+}
+
+.job-cont::-webkit-scrollbar-thumb {
+  background-color: #888; /* Color of the scrollbar */
+  border-radius: 10px; /* Make it rounded */
+}
+
+.job-cont::-webkit-scrollbar-track {
+  background: transparent; /* Transparent track (no track visible) */
+}
+.job_tab {
+  margin: 10px !important;
+}
+table thead tr td {
+  font-size: 15px;
+}
+table tbody tr td {
+  font-size: 13px;
+}
+.sub_title_form {
+  margin-left: 10px;
+}

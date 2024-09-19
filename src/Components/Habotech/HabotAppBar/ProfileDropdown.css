@@ -1,0 +1,211 @@
+.menu-container {
+    display: flex;
+    justify-content: flex-end;
+    margin: 0 0 0 5px;
+  }
+  
+  .menu-trigger {
+    cursor: pointer;
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: none;
+    vertical-align: middle;
+    transition: box-shadow 0.4s ease;
+  }
+  
+  .menu-trigger span {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 21px;
+    color: #2c3e50;
+  }
+  .menu-trigger i {
+    font-size: 18px;
+  }
+  
+  .menu-trigger img {
+    height: 40px;
+    width: 40px;
+    border-radius: 90px;
+    margin: 0 10px 0 0;
+  }
+  
+  .menu {
+    background: #ffffff;
+    position: absolute;
+    top: 60px;
+    right: 6.5em;
+    width: 300px;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px);
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+    z-index: 9999;
+  }
+  
+  .modal-content {
+    background: #ffffff !important;
+    box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(-20px) !important;
+    transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s !important;
+  }
+  
+  .menu.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .user-email {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 0px 6px 20px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 19px;
+  }
+  
+  .menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .menu li {
+    border-bottom: 1px solid #dddddd;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21px;
+    text-align: left;
+    border-bottom: 1px solid rgba(228, 226, 224, 0.47);
+  }
+  
+  .menu li a {
+    text-decoration: none;
+    color: #333333;
+    padding: 9px 1px 20px 18px;
+    display: block;
+  }
+  
+  .menu li i {
+    font-size: 20px;
+    margin-right: 20px;
+  }
+  
+  .menu li img {
+    height: 22px;
+    width: 22px;
+    margin-right: 20px;
+  }
+  
+  .signout-button {
+    padding: 5% 5% 5% 40%;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 22px;
+    color: #2b84e2;
+    cursor: pointer;
+  }
+  
+  @media (min-width: 0px) and (max-width: 991px) {
+    .show-name-dropdown {
+      display: block;
+      display: flex;
+      justify-content: center;
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .menu-trigger img {
+      margin: 0 1px 0 0 !important;
+    }
+    .hide-name {
+      display: none;
+    }
+    .menu-container {
+      display: flex;
+      margin: 1px 0 0 0px;
+    }
+    .menu {
+      background: #ffffff;
+      position: absolute;
+      top: 3px;
+      right: 38px;
+      width: 260px;
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-20px);
+      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+      z-index: 9999;
+    }
+  
+    .modal-content {
+      background: #ffffff !important;
+      /* width: 300px !important; */
+      box-shadow: 0 1px 8px rgba(0, 0, 0, 0.3) !important;
+      transform: translateY(-20px) !important;
+      transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s !important;
+    }
+  }
+  
+  @media (min-width: 0px) and (max-width: 428px) {
+    .menu li a {
+      padding: 7px 18px 7px 18px;
+    }
+  }
+  
+  @media (min-width: 428px) and (max-width: 768px) {
+    .menu li a {
+      padding: 7px 18px 7px 18px;
+    }
+  }
+  
+  @media (min-width: 769px) and (max-width: 991px) {
+    .menu li a {
+      padding: 7px 18px 7px 18px;
+    }
+  }
+  
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .menu-container {
+      margin: 0 0 0 0px;
+    }
+  }
+  
+  @media (min-width: 992px) {
+    .container,
+    .container-lg,
+    .container-md,
+    .container-sm {
+      max-width: 100%;
+    }
+    .menu-trigger span {
+      font-size: 14px;
+    }
+    .show-name-dropdown {
+      display: none;
+    }
+  }
+  
+  .fa-angle-down:before {
+    content: "\f107";
+    margin: 0px 0px 0px 6px;
+  }
+  .feedbackModal {
+    margin-top: 10px;
+  }
+  
+  .feedbackSubmit {
+    background-color: #072f57;
+    border: #072f57;
+  }
+  

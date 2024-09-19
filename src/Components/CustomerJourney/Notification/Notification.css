@@ -1,0 +1,249 @@
+.notifications-container {
+  margin-bottom: 10%;
+}
+.notificationFilter {
+  color: #072f57;
+  background: #ffffff;
+  box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.1);
+  padding: 20px 10px;
+  display: inline-block;
+  margin: 15px 20px;
+}
+
+.filter-col {
+  margin-top: 20px;
+  display: flex;
+  padding: 0;
+  align-items: baseline;
+  justify-content: flex-end;
+}
+
+.notification-list {
+  background: #ffffff;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.notification-description {
+  color: black;
+  flex: 1.6 1;
+  text-align: left;
+}
+
+.notification-read {
+  flex: 0.2;
+  justify-content: flex-end;
+}
+@media (min-width: 0px) and (max-width: 990px) {
+  .notifications-container {
+    margin-bottom: 30%;
+    font-size: 17px !important;
+  }
+  .bell-icon {
+    flex: 0.2;
+  }
+
+  .icon img {
+    height: 40px;
+    width: 40px;
+    margin: 2px 8px !important;
+  }
+  .notify-list-item {
+    display: flex;
+    padding: 17px 0 3px 0;
+    border-bottom: 1px solid #d4d2d0;
+    align-items: center;
+  }
+  .page-heading {
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 41px;
+  }
+  .filter-icon {
+    height: 90px;
+    width: 90px;
+  }
+  .footer-icon-nav i,
+  img {
+    position: inherit;
+  }
+}
+@media (min-width: 0px) and (max-width: 600px) {
+  .bell-icon {
+    margin: 0px 8px;
+    height: 30px;
+  }
+}
+
+@media (min-width: 991px) and (max-width: 4620px) {
+  .notification-description span {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+  }
+
+  .notification-description .time {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 33px;
+  }
+
+  .bell-icon {
+    margin-left: 1%;
+    margin-right: 4%;
+  }
+
+  .icon img {
+    height: 42px;
+    width: 42px;
+    margin-top: 10px;
+  }
+  .notify-list-item {
+    display: flex;
+    padding: 5px 0 1px 40px;
+    border-bottom: 1px solid #d4d2d0;
+    align-items: center;
+  }
+  .page-heading {
+    margin-top: 26px;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 41px;
+  }
+  .filter-icon {
+    height: 100px;
+    width: 100px;
+  }
+
+  .notification-list {
+    margin: 0% 19%;
+  }
+}
+
+.filterMenuIcon {
+  position: absolute !important;
+  inset: 12px 20px auto auto !important;
+  transform: translate3d(0.5px, 49px, 0px) !important;
+  background: rgb(255, 255, 255);
+  border: none;
+  box-shadow: rgba(138, 138, 138, 0.4) 1px 0px 8px;
+  border-radius: initial;
+}
+.read-icon {
+  color: #072f57;
+  font-size: 25px;
+}
+.unread-icon {
+  color: #072f57;
+  font-size: 30px;
+}
+.unread-icon:hover {
+  cursor: pointer;
+  color: #072f57cf;
+  font-size: 32px;
+  transition: background-color 0.3s ease;
+}
+.notify-list-item-hover {
+  display: flex;
+  padding: 3px 0 3px 0;
+  border-bottom: 1px solid #d4d2d0;
+  align-items: center;
+  background-color: rgba(143, 183, 225, 0.1);
+}
+.notify-list-item-hover:hover {
+  transition: background-color 0.3s ease;
+  background-color: rgba(143, 183, 225, 0.685);
+  cursor: pointer;
+}
+.screen-cont {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.footer-ad {
+  margin-top: auto;
+}
+/* Paginationdiv */
+.screen-cont .paginationdiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-block: 20px;
+  gap: 10px;
+}
+
+/* loader css */
+/* From Uiverse.io by satyamchaudharydev */
+.loader {
+  display: block;
+  --height-of-loader: 4px;
+  --loader-color: #0071e2;
+  width: 130px;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}
+
+/* Loader */
+.screen-cont .notification-list .loader {
+  position: fixed;
+  top: 50%;
+  left: 45%;
+}
+
+.nofounddiv {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.App
+  .screen-cont
+  .container
+  .notifications-container
+  .row
+  .page-heading
+  .notifcationandmark {
+  width: 100% !important;
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 20px;
+  padding-bottom: 10px;
+}
