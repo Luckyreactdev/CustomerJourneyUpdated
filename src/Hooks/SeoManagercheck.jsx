@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
 
-export const useSeomanager = () => {
+export const useTrackmanager = () => {
   const savedUserInfo = useSelector((state) => state.account.savedUserData);
-  return savedUserInfo?.user_profile?.user?.type === "SEO_MANAGER";
+  return savedUserInfo?.user_profile?.user?.type === "TRACK_MANAGER";
+
 };
 

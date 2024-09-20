@@ -5,7 +5,6 @@ import PrivateRoute from "./Router/PrivateRoute";
 import ProtectedRoute from "./Router/ProtectedRoute";
 import PublicRoute from "./Router/PublicRoute";
 import { PropagateLoader } from "react-spinners";
-import { useSeomanager } from "./Hooks/SeoManagercheck.jsx";
 
 const SpinnerFallback = () => (
   <div className="lazyLoader">
@@ -265,9 +264,7 @@ const LazyPortalStatus = lazy(() =>
   import("./Components/Portal/Portal-Status/PortalStatus.jsx")
 );
 
-const LazyScreenshotAssessment = lazy(() =>
-  import("./Components/Portal/ScreenshotAssessment/ScreenshotAssessment.jsx")
-);
+
 
 const Lazycontentmanager = lazy(() =>
   import("./Components/Portal/ContentManager/Contentmanager.jsx")
@@ -277,7 +274,6 @@ export const routes = {
   jobListing: "/requirements",
 };
 function App() {
-  const seoadmin = useSeomanager();
 
   return (
     <div className="App">
@@ -1011,22 +1007,6 @@ function App() {
             </Suspense>
           }
         />
-        {seoadmin && (
-          <Route
-            path="/ScreenshotAssessment"
-            element={
-              <Suspense
-                fallback={
-                  <div>
-                    <SpinnerFallback />
-                  </div>
-                }
-              >
-                <LazyScreenshotAssessment />
-              </Suspense>
-            }
-          />
-        )}
 
         <Route
           path="/TaskPortal"

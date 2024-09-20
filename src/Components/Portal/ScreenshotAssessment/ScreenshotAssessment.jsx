@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import "./ScreenshotAssessment.css";
 import HabotAppBar from "../../Habotech/HabotAppBar/HabotAppBar";
 import { useLocation, useParams } from "react-router-dom";
-import { useSeomanager } from "../../../Hooks/SeoManagercheck";
+import { useTrackmanager } from "../../../Hooks/SeoManagercheck";
 function ScreenshotAssessment() {
   const [userId, setUserId] = useState(null);
   const [notifications, setNotifications] = useState([]);
@@ -29,7 +29,7 @@ function ScreenshotAssessment() {
   const location = useLocation();
 
   const { id } = useParams();
-  const seomanager = useSeomanager();
+  const trackmanager = useTrackmanager();
 
   const fetchNotifications = async (
     url = `${baseURL}${tasksubmission}?page=${currentPage}`
@@ -46,6 +46,8 @@ function ScreenshotAssessment() {
       setNotifications(response.data.results);
       setNextPageUrl(response.data.next);
       setPrevPageUrl(response.data.previous);
+      console.log("submiited task",response.data);
+      
     } catch (error) {
       console.error("Error fetching notifications:", error);
       setloader(false);
@@ -53,7 +55,7 @@ function ScreenshotAssessment() {
   };
   useEffect(() => {
     fetchNotifications();
-  }, [seomanager]);
+  }, [trackmanager]);
 
   //   const modalopen = () => {
   //     setmodal((prev) => !prev);

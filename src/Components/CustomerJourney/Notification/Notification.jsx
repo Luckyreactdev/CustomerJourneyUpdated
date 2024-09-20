@@ -14,7 +14,6 @@ import {
 import AdminFooter from "../../Footer/AdminFooter";
 import HabotAppBar from "../../Habotech/HabotAppBar/HabotAppBar";
 import CheckIcon from "@rsuite/icons/Check";
-import { useSeomanager } from "../../../Hooks/SeoManagercheck";
 import { useIsActivityexecutor } from "../../../Hooks/Activityexecutor";
 import { toast } from "react-toastify";
 
@@ -27,7 +26,6 @@ function Notification() {
   const [prevPageUrl, setPrevPageUrl] = useState(null);
   const [loader, setloader] = useState(false);
 
-  const seomanager = useSeomanager();
   const executor = useIsActivityexecutor();
   // seo code
   const fetchNotifications = async (

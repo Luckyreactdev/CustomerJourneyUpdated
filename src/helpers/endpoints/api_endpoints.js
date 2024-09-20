@@ -79,4 +79,5 @@ export const tasksubmission = "/seo/task-submissions/";
 export const contentmanager = "/keyword-research/content-managers/";
 export const portallist= "/seo/portals/"
 export const sectors="/keyword-research/sectors/"
-export const keywordFile="/keyword-research/keyword-files/"
+export const seomanagers="/keyword-research/seo-managers/"
+export const csvfileupload="/keyword-research/keyword-files/"

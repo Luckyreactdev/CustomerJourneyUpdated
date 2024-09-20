@@ -15,9 +15,10 @@ import {
   portalNotifications,
 } from "../../../helpers/endpoints/api_endpoints";
 import { Dropdown } from "react-bootstrap";
-import { useSeomanager } from "../../../Hooks/SeoManagercheck";
 import { useIsActivityexecutor } from "../../../Hooks/Activityexecutor";
-import { IsContentmanager } from "../../../Hooks/Contentmanager";
+import {  IsSeomanager } from "../../../Hooks/Contentmanager";
+import { useTrackmanager } from "../../../Hooks/SeoManagercheck";
+
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <a
     href=""
@@ -69,9 +70,9 @@ const HabotAppBar = (props) => {
   const savedUserInfo = useSelector((state) => state.account.savedUserData);
 
   // instance
-  const seomanager = useSeomanager();
+  const trackmanager = useTrackmanager();
   const activityexecutor = useIsActivityexecutor();
-  const manager = IsContentmanager();
+  const manager = IsSeomanager();
 
   const handleScroll = () => {
     setScrollPosition(window.scrollY);
@@ -336,7 +337,7 @@ const HabotAppBar = (props) => {
                         </Dropdown.Item>
                       </Dropdown.Menu>
                     </Dropdown>
-                    {seomanager ? (
+                    {trackmanager ? (
                       <NavLink to="/Portal-setup" className="notification-link">
                         Portal
                       </NavLink>

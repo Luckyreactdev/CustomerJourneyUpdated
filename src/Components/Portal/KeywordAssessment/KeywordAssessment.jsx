@@ -7,13 +7,13 @@ import {
   accountProfile,
   portalNotifications,
   tasksubmission,
-  keywordFile,
+  csvfileupload,
 } from "../../../helpers/endpoints/api_endpoints";
 import { toast } from "react-toastify";
 import "./KeywordAssessment.css";
 import HabotAppBar from "../../Habotech/HabotAppBar/HabotAppBar";
 import { useLocation, useParams } from "react-router-dom";
-import { useSeomanager } from "../../../Hooks/SeoManagercheck";
+import { useTrackmanager } from "../../../Hooks/SeoManagercheck";
 function KeywordAssessment() {
   const [userId, setUserId] = useState(null);
   const [keywords, setKeywords] = useState([]);
@@ -29,10 +29,10 @@ function KeywordAssessment() {
   const location = useLocation();
 
   const { id } = useParams();
-  const seomanager = useSeomanager();
+  const trackmanager = useTrackmanager();
 
   const fetchKeywords = async (
-    url = `${baseURL}${keywordFile}?page=${currentPage}`
+    url = `${baseURL}${csvfileupload}?page=${currentPage}`
   ) => {
     try {
       setloader(true);
@@ -46,6 +46,7 @@ function KeywordAssessment() {
       setKeywords(response.data.results);
       setNextPageUrl(response.data.next);
       setPrevPageUrl(response.data.previous);
+      console.log("keywordfilesdata", response);
     } catch (error) {
       console.error("Error fetching keywords:", error);
       setloader(false);
@@ -54,15 +55,7 @@ function KeywordAssessment() {
 
   useEffect(() => {
     fetchKeywords();
-  }, [seomanager]);
-
-  const updateKeywordStatus = (id, status) => {
-    setKeywords((prevKeywords) =>
-      prevKeywords.map((keyword) =>
-        keyword.id === id ? { ...keyword, status } : keyword
-      )
-    );
-  };
+  }, [trackmanager]);
 
   const handleApprovalStatus = async (keywordId, status) => {
     try {
@@ -77,20 +70,18 @@ function KeywordAssessment() {
         acknowledge_at: status === "APPROVE" ? new Date().toISOString() : null,
       };
       const response = await axios.patch(
-        `${baseURL}${keywordFile}${keywordId}/`,
+        `${baseURL}${csvfileupload}${keywordId}/`,
         patchBody,
         { headers }
       );
+
+      await fetchKeywords();
       toast.success(
         status === "APPROVE" ? "Approved successfully" : "Rejected Successfully"
       );
-      updateKeywordStatus(
-        keywordId,
-        status === "APPROVE" ? "APPROVED" : "REJECTED"
-      );
-      await fetchKeywords();
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong");
     }
   };
 
@@ -103,10 +94,12 @@ function KeywordAssessment() {
           <Table className="mt-4">
             <thead>
               <tr>
-                <th>File</th>
+                <th>Sector Name</th>
                 <th>Approver</th>
                 <th>Status</th>
-                <th>Created At</th>
+                <th>Submitted At</th>
+                <th>File</th>
+                <th>Acknowledge Date & Time</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -114,6 +107,18 @@ function KeywordAssessment() {
               {keywords.length > 0 ? (
                 keywords.map((keyword) => (
                   <tr key={keyword.id}>
+                    <td>{keyword?.sector || "-"}</td>
+                    <td>{keyword.approved_by?.email || "N/A"}</td>
+                    <td>{keyword.status}</td>
+                    <td>
+                      <p>{new Date(keyword.created_at).toLocaleDateString()}</p>
+                      <p>
+                        {new Date(keyword.created_at).toLocaleTimeString([], {
+                          hour: "2-digit",
+                          minute: "2-digit",
+                        })}
+                      </p>
+                    </td>
                     <td>
                       {keyword.file ? (
                         <a
@@ -127,19 +132,9 @@ function KeywordAssessment() {
                         "No file"
                       )}
                     </td>
-                    <td>{keyword.approved_by?.email || "N/A"}</td>
-                    <td>{keyword.status}</td>
-                    <td>
-                      <p>{new Date(keyword.created_at).toLocaleDateString()}</p>
-                      <p>
-                        {new Date(keyword.created_at).toLocaleTimeString([], {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </p>
-                    </td>
+                    <td></td>
                     <td className="actionbuttons">
-                      <div className="actionbutton">
+                      <div className="actionbutton_keywordsbutton">
                         {keyword.status === "APPROVED" ? (
                           <Button variant="outline-primary" disabled>
                             APPROVED
@@ -152,7 +147,7 @@ function KeywordAssessment() {
                                 handleApprovalStatus(keyword.id, "APPROVE")
                               }
                             >
-                              APPROVE & SUBMIT
+                              APPROVE
                             </Button>
                             <Button
                               variant="outline-primary"
@@ -160,7 +155,7 @@ function KeywordAssessment() {
                                 handleApprovalStatus(keyword.id, "REJECTED")
                               }
                             >
-                              REJECT & SUBMIT
+                              REJECT
                             </Button>
                           </>
                         ) : (

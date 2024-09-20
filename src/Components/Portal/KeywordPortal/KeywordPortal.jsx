@@ -10,9 +10,11 @@ import {
   contentmanager,
   portallist,
   sectors,
+  seomanagers,
 } from "../../../helpers/endpoints/api_endpoints";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useTrackmanager } from "../../../Hooks/SeoManagercheck";
 
 const KeywordPortal = () => {
   const [sectorname, setsectorname] = useState("");
@@ -25,6 +27,7 @@ const KeywordPortal = () => {
     portavalue: null,
   });
   const [portalid, setportalid] = useState([]);
+  const trackmanager = useTrackmanager();
 
   useEffect(() => {
     const fetchactivityexecutor = async () => {
@@ -34,7 +37,7 @@ const KeywordPortal = () => {
           Authorization: `Token ${accessToken}`,
           "Content-Type": "application/json",
         };
-        const response = await axios.get(`${baseURL}${contentmanager}`, {
+        const response = await axios.get(`${baseURL}${seomanagers}`, {
           headers,
         });
         setExecutors(response.data.results);
@@ -62,7 +65,7 @@ const KeywordPortal = () => {
     };
     fetchactivityexecutor();
     fetchportal();
-  }, []);
+  }, [trackmanager]);
 
   const handlesectorcreation = async (e) => {
     e.preventDefault();
@@ -75,16 +78,16 @@ const KeywordPortal = () => {
       const sectorbody = {
         name: sectorname,
         portal: formData.portavalue,
-        assignee: {
-          email: formData.Assigneeemail,
-        },
+        assignee: formData.Assigneeid,
       };
       const response = await axios.post(`${baseURL}${sectors}`, sectorbody, {
         headers,
       });
       console.log("seectorresponse", response);
+      toast.success("Created sector successfully ");
     } catch (error) {
       console.log(error);
+      toast.error("Error creating sector");
     }
   };
 
@@ -166,7 +169,7 @@ const KeywordPortal = () => {
                           }
                         }}
                       >
-                        <option value="">Select Content manager</option>
+                        <option value="">Select SEO manager</option>
                         {executorsname.map((names) => (
                           <option key={names.id} value={names.id}>
                             {names.email}

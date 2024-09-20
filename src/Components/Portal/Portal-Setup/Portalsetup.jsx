@@ -10,6 +10,7 @@ import {
 } from "../../../helpers/endpoints/api_endpoints";
 import axios from "axios";
 import { toast } from "react-toastify";
+import { useTrackmanager } from "../../../Hooks/SeoManagercheck";
 
 const Portalsetup = () => {
   const [portalname, setportalname] = useState("");
@@ -20,6 +21,8 @@ const Portalsetup = () => {
     Assigneeid: null,
     AssigneeName: "",
   });
+
+  const trackmanager=useTrackmanager()
 
   useEffect(() => {
     const fetchactivityexecutor = async () => {
@@ -39,7 +42,7 @@ const Portalsetup = () => {
       }
     };
     fetchactivityexecutor();
-  }, []);
+  }, [trackmanager]);
 
   const handleportal = async (e) => {
     e.preventDefault();
