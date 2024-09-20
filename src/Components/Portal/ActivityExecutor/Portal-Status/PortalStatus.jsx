@@ -8,10 +8,10 @@ import {
   portalNotifications,
   portaltask,
   tasksubmission,
-} from "../../../helpers/endpoints/api_endpoints";
+} from "../../../../helpers/endpoints/api_endpoints";
 import { toast } from "react-toastify";
 import "./PortalStatus.css";
-import HabotAppBar from "../../Habotech/HabotAppBar/HabotAppBar";
+import HabotAppBar from "../../../Habotech/HabotAppBar/HabotAppBar";
 import { useLocation, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 function PortalStatus() {

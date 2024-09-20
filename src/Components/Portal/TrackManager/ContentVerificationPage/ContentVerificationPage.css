@@ -1,0 +1,30 @@
+.content-verification-page {
+  margin-top: 2rem;
+}
+
+.content-verification-page h1 {
+  margin-bottom: 2rem;
+  text-align: left; /* Align the text to the left */
+  display: flex;
+  justify-content: flex-start; /* Align the heading to the left */
+}
+
+.content-verification-page .form-control[readonly] {
+  background-color: #f8f9fa;
+}
+
+.loader {
+  /* Add CSS styles for the loader */
+}
+
+.pagination-div {
+  /* Add CSS styles for the pagination controls */
+}
+
+.action-buttons {
+  /* Add CSS styles for the action buttons */
+}
+
+.empty-row {
+  /* Add CSS styles for the empty row */
+}

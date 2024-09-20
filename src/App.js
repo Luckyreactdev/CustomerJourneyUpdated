@@ -261,10 +261,8 @@ const LazyPortalsetup = lazy(() =>
 );
 
 const LazyPortalStatus = lazy(() =>
-  import("./Components/Portal/Portal-Status/PortalStatus.jsx")
+  import("./Components/Portal/ActivityExecutor/Portal-Status/PortalStatus.jsx")
 );
-
-
 
 const LazySeoManager = lazy(() =>
   import("./Components/Portal/SeoManager/SeomanagerTask/Seomanager.jsx")
@@ -274,7 +272,6 @@ export const routes = {
   jobListing: "/requirements",
 };
 function App() {
-
   return (
     <div className="App">
       <Routes>

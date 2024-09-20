@@ -1,4 +1,4 @@
-export const baseURL = "https://operations-test-run-59322.uc.r.appspot.com/";
+export const baseURL = "https://c0d6-102-0-11-28.ngrok-free.app";
 
 // Accounts endpoints
 export const logoutUrl = "accounts/logout/";
@@ -77,7 +77,8 @@ export const portalNotifications = "/seo/notifications/";
 export const portaltask = "/seo/portal-tasks/";
 export const tasksubmission = "/seo/task-submissions/";
 export const contentmanager = "/keyword-research/content-managers/";
-export const portallist= "/seo/portals/"
-export const sectors="/keyword-research/sectors/"
-export const seomanagers="/keyword-research/seo-managers/"
-export const csvfileupload="/keyword-research/keyword-files/"
+export const portallist = "/seo/portals/";
+export const sectors = "/keyword-research/sectors/";
+export const seomanagers = "/keyword-research/seo-managers/";
+export const csvfileupload = "/keyword-research/keyword-files/";
+export const fetchKeyword = "/keyword-research/keywords/";

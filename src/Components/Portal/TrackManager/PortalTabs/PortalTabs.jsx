@@ -1,12 +1,12 @@
 import React from "react";
 import "./PortalTabs.css";
 import HabotAppBar from "../../../Habotech/HabotAppBar/HabotAppBar";
-import { Button, Tab, Nav, Col, Row, Form } from "react-bootstrap";
+import { Tab, Nav, Row } from "react-bootstrap";
 import Portalsetup from "../Portal-Setup/Portalsetup";
-import PortalStatus from "../../Portal-Status/PortalStatus";
 import ScreenshotAssessment from "../ScreenshotAssessment/ScreenshotAssessment";
 import KeywordPortal from "../KeywordPortal/KeywordPortal";
 import KeywordAssessment from "../KeywordAssessment/KeywordAssessment";
+import ContentVerificationPage from "../ContentVerificationPage/ContentVerificationPage";
 
 const PortalTabs = () => {
   return (
@@ -24,13 +24,14 @@ const PortalTabs = () => {
               </Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="Keyword">
-              Sector Selection
-              </Nav.Link>
+              <Nav.Link eventKey="Keyword">Sector Selection</Nav.Link>
             </Nav.Item>
             <Nav.Item>
-              <Nav.Link eventKey="Keyword-Assess">
-              Keywords Assessment
+              <Nav.Link eventKey="Keyword-Assess">Keywords Assessment</Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="Content-Verification">
+                Content Verification
               </Nav.Link>
             </Nav.Item>
           </Nav>
@@ -41,22 +42,27 @@ const PortalTabs = () => {
             </Tab.Pane>
           </Tab.Content>
 
-          
           <Tab.Content>
             <Tab.Pane eventKey="Approval-Activity">
-              <ScreenshotAssessment/>
+              <ScreenshotAssessment />
             </Tab.Pane>
           </Tab.Content>
 
           <Tab.Content>
             <Tab.Pane eventKey="Keyword">
-              <KeywordPortal/>
+              <KeywordPortal />
             </Tab.Pane>
           </Tab.Content>
 
           <Tab.Content>
             <Tab.Pane eventKey="Keyword-Assess">
-              <KeywordAssessment/>
+              <KeywordAssessment />
+            </Tab.Pane>
+          </Tab.Content>
+
+          <Tab.Content>
+            <Tab.Pane eventKey="Content-Verification">
+              <ContentVerificationPage />
             </Tab.Pane>
           </Tab.Content>
         </Row>
