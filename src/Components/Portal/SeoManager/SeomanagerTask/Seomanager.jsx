@@ -10,13 +10,13 @@ import {
   tasksubmission,
   sectors,
   csvfileupload,
-} from "../../../helpers/endpoints/api_endpoints";
+} from "../../../../helpers/endpoints/api_endpoints";
 import { toast } from "react-toastify";
-import "./Contentmanager.css";
-import HabotAppBar from "../../Habotech/HabotAppBar/HabotAppBar";
+import "./Seomanager.css";
+import HabotAppBar from "../../../Habotech/HabotAppBar/HabotAppBar";
 import { useLocation, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
-function Contentmanager() {
+function Seomanager() {
   const [userId, setUserId] = useState(null);
   const [sectordata, setsectordata] = useState([]);
   const [modal, setmodal] = useState(false);
@@ -269,4 +269,4 @@ function Contentmanager() {
   );
 }
 
-export default Contentmanager;
+export default Seomanager;

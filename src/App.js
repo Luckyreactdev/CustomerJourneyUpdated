@@ -257,7 +257,7 @@ const LazyListCampaignManager = lazy(() =>
 );
 // seo lazy
 const LazyPortalsetup = lazy(() =>
-  import("./Components/Portal/PortalTabs/PortalTabs.jsx")
+  import("./Components/Portal/TrackManager/PortalTabs/PortalTabs.jsx")
 );
 
 const LazyPortalStatus = lazy(() =>
@@ -266,8 +266,8 @@ const LazyPortalStatus = lazy(() =>
 
 
 
-const Lazycontentmanager = lazy(() =>
-  import("./Components/Portal/ContentManager/Contentmanager.jsx")
+const LazySeoManager = lazy(() =>
+  import("./Components/Portal/SeoManager/SeomanagerTask/Seomanager.jsx")
 );
 
 export const routes = {
@@ -1018,7 +1018,7 @@ function App() {
                 </div>
               }
             >
-              <Lazycontentmanager />
+              <LazySeoManager />
             </Suspense>
           }
         />

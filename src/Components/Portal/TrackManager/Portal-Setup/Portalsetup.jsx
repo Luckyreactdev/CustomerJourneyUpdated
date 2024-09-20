@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
-import HabotAppBar from "../../Habotech/HabotAppBar/HabotAppBar";
+import HabotAppBar from "../../../Habotech/HabotAppBar/HabotAppBar";
 import "./Portalsetup.css";
 import { Button, Tab, Nav, Col, Row, Form, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { axiosInstance } from "../../../helpers/axios/axios";
+import { axiosInstance } from "../../../../helpers/axios/axios";
 import {
   activityexecutors,
   baseURL,
-} from "../../../helpers/endpoints/api_endpoints";
+} from "../../../../helpers/endpoints/api_endpoints";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useTrackmanager } from "../../../Hooks/SeoManagercheck";
+import { useTrackmanager } from "../../../../Hooks/SeoManagercheck";
 
 const Portalsetup = () => {
   const [portalname, setportalname] = useState("");

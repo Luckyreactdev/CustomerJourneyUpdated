@@ -1,9 +1,9 @@
 import React from "react";
 import "./PortalTabs.css";
-import HabotAppBar from "../../Habotech/HabotAppBar/HabotAppBar";
+import HabotAppBar from "../../../Habotech/HabotAppBar/HabotAppBar";
 import { Button, Tab, Nav, Col, Row, Form } from "react-bootstrap";
 import Portalsetup from "../Portal-Setup/Portalsetup";
-import PortalStatus from "../Portal-Status/PortalStatus";
+import PortalStatus from "../../Portal-Status/PortalStatus";
 import ScreenshotAssessment from "../ScreenshotAssessment/ScreenshotAssessment";
 import KeywordPortal from "../KeywordPortal/KeywordPortal";
 import KeywordAssessment from "../KeywordAssessment/KeywordAssessment";

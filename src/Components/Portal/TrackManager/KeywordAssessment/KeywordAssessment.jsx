@@ -8,12 +8,12 @@ import {
   portalNotifications,
   tasksubmission,
   csvfileupload,
-} from "../../../helpers/endpoints/api_endpoints";
+} from "../../../../helpers/endpoints/api_endpoints";
 import { toast } from "react-toastify";
 import "./KeywordAssessment.css";
-import HabotAppBar from "../../Habotech/HabotAppBar/HabotAppBar";
+import HabotAppBar from "../../../Habotech/HabotAppBar/HabotAppBar";
 import { useLocation, useParams } from "react-router-dom";
-import { useTrackmanager } from "../../../Hooks/SeoManagercheck";
+import { useTrackmanager } from "../../../../Hooks/SeoManagercheck";
 function KeywordAssessment() {
   const [userId, setUserId] = useState(null);
   const [keywords, setKeywords] = useState([]);

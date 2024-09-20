@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import HabotAppBar from "../../Habotech/HabotAppBar/HabotAppBar";
+import HabotAppBar from "../../../Habotech/HabotAppBar/HabotAppBar";
 import "./KeywordPortal.css";
 import { Button, Tab, Nav, Col, Row, Form, Container } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { axiosInstance } from "../../../helpers/axios/axios";
+import { axiosInstance } from "../../../../helpers/axios/axios";
 import {
   activityexecutors,
   baseURL,
@@ -11,10 +11,10 @@ import {
   portallist,
   sectors,
   seomanagers,
-} from "../../../helpers/endpoints/api_endpoints";
+} from "../../../../helpers/endpoints/api_endpoints";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useTrackmanager } from "../../../Hooks/SeoManagercheck";
+import { useTrackmanager } from "../../../../Hooks/SeoManagercheck";
 
 const KeywordPortal = () => {
   const [sectorname, setsectorname] = useState("");
