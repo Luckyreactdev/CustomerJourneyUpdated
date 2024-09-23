@@ -37,7 +37,7 @@ function Seomanager() {
   const savedUserInfo = useSelector((state) => state.account.savedUserData);
 
   const fetchlistsectors = async (
-    url = `${baseURL}${sectors}?assignee=${savedUserInfo.user_profile.user.id}&?page=${currentPage}`
+    url = `${baseURL}${sectors}?assignee=${savedUserInfo.user_profile.user.id}&page=${currentPage}`
   ) => {
     try {
       setloader(true);
@@ -46,18 +46,41 @@ function Seomanager() {
         Authorization: `Token ${accessToken}`,
         "Content-Type": "application/json",
       };
-      const response = await axios.get(url, { headers });
-      setloader(false);
-      setsectordata(response.data.results);
-      setNextPageUrls(response.data.next);
-      setPrevPageUrls(response.data.previous);
 
-      console.log("sectors", response);
+      const sectorsResponse = await axios.get(url, { headers });
+
+      const filesUrl = `${baseURL}/keyword-research/keyword-files/?assignee=${savedUserInfo.user_profile.user.id}&page=${currentPage}`;
+      const filesResponse = await axios.get(filesUrl, { headers });
+
+      const sectorFileMap = new Map(
+        filesResponse.data.results.map((file) => [file.sector_info.id, file])
+      );
+
+      const combinedData = sectorsResponse.data.results.map((sector) => {
+        const matchingFile = sectorFileMap.get(sector.id);
+        return {
+          ...sector,
+          submittedFile: matchingFile ? matchingFile.file : null,
+          fileStatus: matchingFile ? matchingFile.status : null,
+        };
+      });
+
+      const sortedData = combinedData.sort((a, b) => {
+        return new Date(b.created_at) - new Date(a.created_at);
+      });
+
+      setloader(false);
+      setsectordata(sortedData);
+      setNextPageUrls(sectorsResponse.data.next);
+      setPrevPageUrls(sectorsResponse.data.previous);
+
+      console.log("Sorted combined data:", sortedData);
     } catch (error) {
-      console.error("Error fetching notifications:", error);
+      console.error("Error fetching data:", error);
       setloader(false);
     }
   };
+
   useEffect(() => {
     fetchlistsectors();
   }, []);
@@ -69,6 +92,7 @@ function Seomanager() {
     sectorname
   ) => {
     try {
+      setloader(true);
       const accessToken = localStorage.getItem("accessToken");
       const headers = {
         Authorization: `Token ${accessToken}`,
@@ -91,13 +115,13 @@ function Seomanager() {
           headers,
         }
       );
-
-      console.log(response);
       toast.success("Acknowledged");
       await fetchlistsectors();
+      setloader(false);
     } catch (error) {
       console.log(error);
       toast.error("Acknowledgement Failed");
+      setloader(false);
     }
   };
 
@@ -107,6 +131,7 @@ function Seomanager() {
 
   const csvupload = async () => {
     try {
+      setloader(true);
       const accessToken = localStorage.getItem("accessToken");
       const config = {
         headers: {
@@ -125,9 +150,12 @@ function Seomanager() {
       );
       setmodal(false);
       toast.success("file Submitted Successfully");
+      await fetchlistsectors();
+      setloader(false);
     } catch (error) {
       console.log(error);
-      toast.error("file Submit Successfully");
+      toast.error("file Submit failed");
+      setloader(false);
     }
     console.log(screenshotvalue);
   };
@@ -162,6 +190,8 @@ function Seomanager() {
       </Modal>
 
       <div className="portalstatusdiv">
+        {loader && <div class="loader"></div>}
+
         <Container>
           <h1>SEO Keyword Managment </h1>
           <Table className="mt-4">
@@ -171,6 +201,8 @@ function Seomanager() {
                 <th>Portal id</th>
                 <th>Task Created</th>
                 <th>Acknowledge Date & Time</th>
+                <th>Status</th>
+                <th>File</th>
                 <th>Action</th>
               </tr>
             </thead>
@@ -214,11 +246,22 @@ function Seomanager() {
                         )}
                       </p>
                     </td>
-
+                    <td>{sectors.fileStatus}</td>
+                    <td>
+                      <a
+                        href={sectors.submittedFile}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {sectors.submittedFile ? "view" : "N/A"}
+                      </a>
+                    </td>
                     <td className="actionbuttons">
                       {sectors.is_acknowledged ? (
-                        <button
+                        <Button
                           class="button"
+                          variant="outline-primary"
+                          disabled={sectors.submittedFile}
                           onClick={() => {
                             {
                               modalopen();
@@ -232,11 +275,13 @@ function Seomanager() {
                             }
                           }}
                         >
-                          <p class="text">Upload File</p>
-                        </button>
+                          {!sectors.submittedFile && "Upload File"}
+                          {sectors.submittedFile && " Submitted"}
+                        </Button>
                       ) : (
-                        <button
+                        <Button
                           class="button"
+                          variant="outline-primary"
                           onClick={() =>
                             patchsectorapproval(
                               sectors.id,
@@ -246,8 +291,8 @@ function Seomanager() {
                             )
                           }
                         >
-                          <p class="text">Accept</p>
-                        </button>
+                          Accept
+                        </Button>
                       )}
                     </td>
                   </tr>
@@ -255,6 +300,8 @@ function Seomanager() {
               ) : (
                 <tr className="emptyrow">
                   <td colSpan="5">No TASK available</td>
+                  <td></td>
+                  <td></td>
                 </tr>
               )}
             </tbody>
@@ -262,7 +309,22 @@ function Seomanager() {
         </Container>
 
         <div className="paginationdiv">
-          <div></div>
+          {prevPageUrls && (
+            <Button
+              variant="outline-primary"
+              onClick={() => fetchlistsectors(prevPageUrls)}
+            >
+              Previous
+            </Button>
+          )}
+          {nextPageUrls && (
+            <Button
+              variant="outline-primary"
+              onClick={() => fetchlistsectors(nextPageUrls)}
+            >
+              Next
+            </Button>
+          )}
         </div>
       </div>
     </>

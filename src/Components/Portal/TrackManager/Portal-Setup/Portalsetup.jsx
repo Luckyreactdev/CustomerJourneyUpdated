@@ -10,8 +10,7 @@ import {
 } from "../../../../helpers/endpoints/api_endpoints";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useTrackmanager } from "../../../../Hooks/SeoManagercheck";
-
+import { useTrackmanager } from "../../../../Hooks/TrackManager";
 const Portalsetup = () => {
   const [portalname, setportalname] = useState("");
   const navigate = useNavigate();
@@ -21,12 +20,14 @@ const Portalsetup = () => {
     Assigneeid: null,
     AssigneeName: "",
   });
+  const [loader, setloader] = useState(true);
 
-  const trackmanager=useTrackmanager()
+  const trackmanager = useTrackmanager();
 
   useEffect(() => {
     const fetchactivityexecutor = async () => {
       try {
+        setloader(true);
         const accessToken = localStorage.getItem("accessToken");
         const headers = {
           Authorization: `Token ${accessToken}`,
@@ -36,9 +37,11 @@ const Portalsetup = () => {
           headers,
         });
         setExecutors(response.data.results);
+        setloader(false);
         console.log(executorsname);
       } catch (error) {
         console.log(error);
+        setloader(false);
       }
     };
     fetchactivityexecutor();
@@ -47,6 +50,7 @@ const Portalsetup = () => {
   const handleportal = async (e) => {
     e.preventDefault();
     try {
+      setloader(true);
       const accessToken = localStorage.getItem("accessToken");
       const headers = {
         Authorization: `Token ${accessToken}`,
@@ -59,10 +63,13 @@ const Portalsetup = () => {
       const response = await axios.post(`${baseURL}/seo/portals/`, portaldata, {
         headers,
       });
+      setloader(false);
       toast.success("Portal created successfully");
       console.log(response);
     } catch (error) {
       console.log(error);
+      setloader(false);
+
       toast.error("Failed to create the portal ");
     }
   };
@@ -72,6 +79,8 @@ const Portalsetup = () => {
         <span className="sub_title_form">Portal Initilisation</span>
         <div className="form_page">
           <div className="form_page_sub">
+            {loader && <div class="loader"></div>}
+
             <Container>
               <Form onSubmit={handleportal}>
                 <Row className="form-field-TM mt-4">

@@ -8,10 +8,10 @@ import {
   portalNotifications,
   portaltask,
   tasksubmission,
-} from "../../../helpers/endpoints/api_endpoints";
+} from "../../../../helpers/endpoints/api_endpoints";
 import { toast } from "react-toastify";
 import "./PortalStatus.css";
-import HabotAppBar from "../../Habotech/HabotAppBar/HabotAppBar";
+import HabotAppBar from "../../../Habotech/HabotAppBar/HabotAppBar";
 import { useLocation, useParams } from "react-router-dom";
 import { useSelector } from "react-redux";
 function PortalStatus() {
@@ -30,7 +30,7 @@ function PortalStatus() {
   const location = useLocation();
   const savedUserInfo = useSelector((state) => state.account.savedUserData);
   const fetchData = useCallback(
-    async (nextUrls = null) => {
+    async (page = currentPage) => {
       try {
         setloader(true);
         const accessToken = localStorage.getItem("accessToken");
@@ -39,16 +39,8 @@ function PortalStatus() {
           "Content-Type": "application/json",
         };
 
-        let notificationsUrl = `${baseURL}${portaltask}?assignee=${savedUserInfo.user_profile.user.id}`;
+        let notificationsUrl = `${baseURL}${portaltask}?assignee=${savedUserInfo.user_profile.user.id}&page=${page}`;
         let taskSubmissionsUrl = `${baseURL}/seo/task-submissions/?user=${savedUserInfo.user_profile.user.id}`;
-
-        if (nextUrls) {
-          notificationsUrl = nextUrls.portalTask || notificationsUrl;
-          // Keep the original task submissions URL to fetch all submissions
-        } else {
-          notificationsUrl += `&page=${currentPage}`;
-          // For task submissions, we'll fetch all pages
-        }
 
         const notificationsResponse = await axios.get(notificationsUrl, {
           headers,
@@ -78,12 +70,12 @@ function PortalStatus() {
         setTaskSubmissions(allTaskSubmissions);
 
         setPrevPageUrls({
-          portalTask: notificationsResponse?.data?.previous,
+          portalTask: notificationsResponse.data.previous,
           taskSubmissions: null, // We're fetching all task submissions, so no need for pagination
         });
 
         setNextPageUrls({
-          portalTask: notificationsResponse?.data?.next,
+          portalTask: notificationsResponse.data.next,
           taskSubmissions: null, // We're fetching all task submissions, so no need for pagination
         });
 
@@ -110,6 +102,7 @@ function PortalStatus() {
         });
 
         setNotifications(updatedNotifications);
+        setCurrentPage(page);
       } catch (error) {
         console.error("Error fetching data:", error);
         setloader(false);
@@ -119,12 +112,8 @@ function PortalStatus() {
   );
 
   useEffect(() => {
-    const fetchAndUpdateData = async () => {
-      await fetchData();
-    };
-
-    fetchAndUpdateData();
-  }, [fetchData]);
+    fetchData(currentPage);
+  }, [fetchData, currentPage]);
 
   const modalopen = () => {
     setmodal((prev) => !prev);
@@ -162,7 +151,7 @@ function PortalStatus() {
         headers,
       });
 
-      await fetchData();
+      await fetchData(currentPage);
       setmodal(false);
       toast.success("Screenshot Submitted");
     } catch (error) {
@@ -190,7 +179,7 @@ function PortalStatus() {
         }
       );
 
-      await fetchData();
+      await fetchData(currentPage);
 
       console.log(response);
       toast.success("Acknowledged");
@@ -200,11 +189,15 @@ function PortalStatus() {
   };
 
   const handleNextClick = () => {
-    fetchData(nextPageUrls);
+    if (nextPageUrls.portalTask) {
+      fetchData(currentPage + 1);
+    }
   };
 
   const handlePreviousClick = () => {
-    fetchData(prevPageUrls);
+    if (prevPageUrls.portalTask) {
+      fetchData(currentPage - 1);
+    }
   };
 
   return (
@@ -272,16 +265,17 @@ function PortalStatus() {
                     <td>
                       <p>
                         {new Date(
-                          notification?.task?.created_at
+                          notification?.created_at
                         ).toLocaleDateString()}
                       </p>
                       <p>
-                        {new Date(
-                          notification?.task?.created_at
-                        ).toLocaleTimeString([], {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
+                        {new Date(notification?.created_at).toLocaleTimeString(
+                          [],
+                          {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          }
+                        )}
                       </p>
                     </td>
                     <td>
@@ -396,7 +390,7 @@ function PortalStatus() {
                 ))
               ) : (
                 <tr>
-                  <td colSpan="5">No Task available</td>
+                  <td colSpan="10">No Task available</td>
                 </tr>
               )}
             </tbody>

@@ -14,7 +14,7 @@ import {
 } from "../../../../helpers/endpoints/api_endpoints";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useTrackmanager } from "../../../../Hooks/SeoManagercheck";
+import { useTrackmanager } from "../../../../Hooks/TrackManager";
 
 const KeywordPortal = () => {
   const [sectorname, setsectorname] = useState("");
@@ -27,11 +27,14 @@ const KeywordPortal = () => {
     portavalue: null,
   });
   const [portalid, setportalid] = useState([]);
+  const [loader, setloader] = useState(false);
+
   const trackmanager = useTrackmanager();
 
   useEffect(() => {
     const fetchactivityexecutor = async () => {
       try {
+        setloader(true);
         const accessToken = localStorage.getItem("accessToken");
         const headers = {
           Authorization: `Token ${accessToken}`,
@@ -41,14 +44,17 @@ const KeywordPortal = () => {
           headers,
         });
         setExecutors(response.data.results);
+        setloader(false);
         console.log("contentmanager", response);
       } catch (error) {
         console.log(error);
+        setloader(false);
       }
     };
 
     const fetchportal = async () => {
       try {
+        setloader(true);
         const accessToken = localStorage.getItem("accessToken");
         const headers = {
           Authorization: `Token ${accessToken}`,
@@ -58,9 +64,11 @@ const KeywordPortal = () => {
           headers,
         });
         setportalid(response.data.results);
+        setloader(false);
         console.log("list of portals", portalid);
       } catch (error) {
         console.log(error);
+        setloader(false);
       }
     };
     fetchactivityexecutor();
@@ -70,6 +78,7 @@ const KeywordPortal = () => {
   const handlesectorcreation = async (e) => {
     e.preventDefault();
     try {
+      setloader(true);
       const accessToken = localStorage.getItem("accessToken");
       const headers = {
         Authorization: `Token ${accessToken}`,
@@ -84,9 +93,12 @@ const KeywordPortal = () => {
         headers,
       });
       console.log("seectorresponse", response);
+      setloader(false);
+
       toast.success("Created sector successfully ");
     } catch (error) {
       console.log(error);
+      setloader(false);
       toast.error("Error creating sector");
     }
   };
@@ -97,6 +109,7 @@ const KeywordPortal = () => {
         <span className="sub_title_form">Sector Selection</span>
         <div className="form_page">
           <div className="form_page_sub">
+            {loader && <div class="loader"></div>}
             <Container>
               <Form onSubmit={handlesectorcreation}>
                 <Row className="form-field-TM mt-4">

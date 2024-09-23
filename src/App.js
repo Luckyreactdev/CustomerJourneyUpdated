@@ -261,20 +261,32 @@ const LazyPortalsetup = lazy(() =>
 );
 
 const LazyPortalStatus = lazy(() =>
-  import("./Components/Portal/Portal-Status/PortalStatus.jsx")
+  import("./Components/Portal/ActivityExecutor/Portal-Status/PortalStatus.jsx")
 );
-
-
 
 const LazySeoManager = lazy(() =>
   import("./Components/Portal/SeoManager/SeomanagerTask/Seomanager.jsx")
 );
 
+const Lazycontentmanager = lazy(() =>
+  import(
+    "./Components/Portal/ContentManager/ContentCreationPage/ContentCreationPage.jsx"
+  )
+);
+
+const LazyUploadImage = lazy(() =>
+  import("./Components/Portal/UploadImage.jsx")
+);
+
+const LazyImageverification = lazy(() =>
+  import("./Components/Portal/ImageVerificationPage.jsx")
+);
+
+
 export const routes = {
   jobListing: "/requirements",
 };
 function App() {
-
   return (
     <div className="App">
       <Routes>
@@ -1019,6 +1031,51 @@ function App() {
               }
             >
               <LazySeoManager />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/ContentCreation"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SpinnerFallback />
+                </div>
+              }
+            >
+              <Lazycontentmanager />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/UploadImage"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SpinnerFallback />
+                </div>
+              }
+            >
+              <LazyUploadImage />
+            </Suspense>
+          }
+        />
+
+        <Route
+          path="/VideoCreation"
+          element={
+            <Suspense
+              fallback={
+                <div>
+                  <SpinnerFallback />
+                </div>
+              }
+            >
+              <LazyImageverification />
             </Suspense>
           }
         />

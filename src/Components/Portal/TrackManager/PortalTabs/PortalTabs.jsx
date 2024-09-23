@@ -3,10 +3,10 @@ import "./PortalTabs.css";
 import HabotAppBar from "../../../Habotech/HabotAppBar/HabotAppBar";
 import { Button, Tab, Nav, Col, Row, Form } from "react-bootstrap";
 import Portalsetup from "../Portal-Setup/Portalsetup";
-import PortalStatus from "../../Portal-Status/PortalStatus";
 import ScreenshotAssessment from "../ScreenshotAssessment/ScreenshotAssessment";
 import KeywordPortal from "../KeywordPortal/KeywordPortal";
 import KeywordAssessment from "../KeywordAssessment/KeywordAssessment";
+import ContentVerificationPage from "../ContentVerificationPage/ContentVerificationPage";
 
 const PortalTabs = () => {
   return (
@@ -33,6 +33,11 @@ const PortalTabs = () => {
               Keywords Assessment
               </Nav.Link>
             </Nav.Item>
+            <Nav.Item>
+              <Nav.Link eventKey="Content-Verify">
+              Content Verification
+              </Nav.Link>
+            </Nav.Item>
           </Nav>
 
           <Tab.Content>
@@ -57,6 +62,12 @@ const PortalTabs = () => {
           <Tab.Content>
             <Tab.Pane eventKey="Keyword-Assess">
               <KeywordAssessment/>
+            </Tab.Pane>
+          </Tab.Content>
+
+          <Tab.Content>
+            <Tab.Pane eventKey="Content-Verify">
+              <ContentVerificationPage/>
             </Tab.Pane>
           </Tab.Content>
         </Row>

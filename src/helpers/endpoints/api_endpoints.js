@@ -81,3 +81,4 @@ export const portallist= "/seo/portals/"
 export const sectors="/keyword-research/sectors/"
 export const seomanagers="/keyword-research/seo-managers/"
 export const csvfileupload="/keyword-research/keyword-files/"
+export const fetchKeyword = "/keyword-research/keywords/";

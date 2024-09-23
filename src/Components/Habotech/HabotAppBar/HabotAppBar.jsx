@@ -16,9 +16,9 @@ import {
 } from "../../../helpers/endpoints/api_endpoints";
 import { Dropdown } from "react-bootstrap";
 import { useIsActivityexecutor } from "../../../Hooks/Activityexecutor";
-import {  IsSeomanager } from "../../../Hooks/Contentmanager";
-import { useTrackmanager } from "../../../Hooks/SeoManagercheck";
-
+import { useTrackmanager } from "../../../Hooks/TrackManager";
+import { IsSeomanager } from "../../../Hooks/Seomanager";
+import { useIsContentManager } from "../../../Hooks/ContentManagerHook";
 const CustomToggle = React.forwardRef(({ children, onClick }, ref) => (
   <a
     href=""
@@ -73,6 +73,7 @@ const HabotAppBar = (props) => {
   const trackmanager = useTrackmanager();
   const activityexecutor = useIsActivityexecutor();
   const manager = IsSeomanager();
+  const contentmanager = useIsContentManager();
 
   const handleScroll = () => {
     setScrollPosition(window.scrollY);
@@ -167,7 +168,7 @@ const HabotAppBar = (props) => {
             <Navbar.Collapse id="responsive-navbar-nav">
               <Nav className="me-auto nav-items tablet-items"></Nav>
               <Nav className=" nav-items">
-                {accessToken && !activityexecutor ? (
+                {accessToken && !activityexecutor && !contentmanager ? (
                   <>
                     {shouldShowDropdown && (
                       <>
@@ -364,6 +365,25 @@ const HabotAppBar = (props) => {
                   <>
                     <NavLink to="/Portal-status" className="notification-link">
                       Task
+                    </NavLink>
+                    <NavLink
+                      to="/notification"
+                      className="notification-link navLinkMob navLinkMobicon"
+                      data-notification-count={
+                        notifications.count > 0 ? notifications.count : "0"
+                      }
+                    >
+                      <i className="fa-solid fa-bell notification_icon"></i>
+                    </NavLink>
+                    <HabotProfileDrop />
+                  </>
+                ) : contentmanager && accessToken ? (
+                  <>
+                    <NavLink
+                      to="/ContentCreation"
+                      className="notification-link"
+                    >
+                      Content Creation
                     </NavLink>
                     <NavLink
                       to="/notification"

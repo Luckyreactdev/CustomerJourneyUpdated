@@ -189,15 +189,14 @@ h1 {
   gap: 10px;
 }
 
-
 .button {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px 15px;
   gap: 15px;
-  background-color: #007ACC;
-  outline: 3px #007ACC solid;
+  background-color: #007acc;
+  outline: 3px #007acc solid;
   outline-offset: -3px;
   border-radius: 5px;
   border: none;
@@ -221,9 +220,53 @@ h1 {
 }
 
 .button:hover .text {
-  color: #007ACC;
+  color: #007acc;
 }
 
 .button:hover svg path {
-  fill: #007ACC;
+  fill: #007acc;
+}
+
+/* loader css */
+/* From Uiverse.io by satyamchaudharydev */
+.loader {
+  display: block;
+  --height-of-loader: 4px;
+  --loader-color: #0071e2;
+  width: 130px;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
+  }
+
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}
+
+/* Loader */
+.screen-cont .notification-list .loader {
+  position: fixed;
+  top: 50%;
+  left: 45%;
 }

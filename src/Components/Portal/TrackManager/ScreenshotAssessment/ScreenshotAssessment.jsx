@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import "./ScreenshotAssessment.css";
 import HabotAppBar from "../../../Habotech/HabotAppBar/HabotAppBar";
 import { useLocation, useParams } from "react-router-dom";
-import { useTrackmanager } from "../../../../Hooks/SeoManagercheck";
+import { useTrackmanager } from "../../../../Hooks/TrackManager";
 function ScreenshotAssessment() {
   const [userId, setUserId] = useState(null);
   const [notifications, setNotifications] = useState([]);
@@ -31,9 +31,7 @@ function ScreenshotAssessment() {
   const { id } = useParams();
   const trackmanager = useTrackmanager();
 
-  const fetchNotifications = async (
-    url = `${baseURL}${tasksubmission}?page=${currentPage}`
-  ) => {
+  const fetchNotifications = async () => {
     try {
       setloader(true);
       const accessToken = localStorage.getItem("accessToken");
@@ -41,13 +39,19 @@ function ScreenshotAssessment() {
         Authorization: `Token ${accessToken}`,
         "Content-Type": "application/json",
       };
-      const response = await axios.get(url, { headers });
+      const params = {
+        page: currentPage,
+        page_size: 10,
+      };
+      const response = await axios.get(`${baseURL}${tasksubmission}`, {
+        headers,
+        params,
+      });
       setloader(false);
       setNotifications(response.data.results);
       setNextPageUrl(response.data.next);
       setPrevPageUrl(response.data.previous);
-      console.log("submiited task",response.data);
-      
+      console.log("submiited task", response.data);
     } catch (error) {
       console.error("Error fetching notifications:", error);
       setloader(false);
@@ -55,7 +59,7 @@ function ScreenshotAssessment() {
   };
   useEffect(() => {
     fetchNotifications();
-  }, [trackmanager]);
+  }, [trackmanager, currentPage]);
 
   //   const modalopen = () => {
   //     setmodal((prev) => !prev);
@@ -82,13 +86,6 @@ function ScreenshotAssessment() {
   //     }
   //     console.log(screenshotvalue);
   //   };
-  const updateNotificationStatus = (id, status) => {
-    setNotifications((prevNotifications) =>
-      prevNotifications.map((notification) =>
-        notification.id === id ? { ...notification, status } : notification
-      )
-    );
-  };
 
   const handleApprovalStatus = async (approveid, status, feedback) => {
     try {
@@ -111,11 +108,7 @@ function ScreenshotAssessment() {
       toast.success(
         status === "APPROVE" ? "Approved successfully" : "Rejected Successfully"
       );
-      console.log(response);
-      updateNotificationStatus(
-        approveid,
-        status === "APPROVE" ? "APPROVED" : "REJECTED"
-      );
+
       await fetchNotifications();
     } catch (error) {
       console.log(error);
@@ -124,32 +117,6 @@ function ScreenshotAssessment() {
 
   return (
     <>
-      {/* <Modal show={modal}>
-        <Modal.Header closeButton={modalopen}>
-          <Modal.Title>Upload Screenshot</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          <Form>
-            <Form.Group controlId="feedback">
-              <Form.Label>Upload Screenshot</Form.Label>
-              <Form.Control
-                type="file"
-                onChange={(e) => setScreenshotvalue(e.target.files[0])}
-                placeholder="Enter feedback"
-              />
-            </Form.Group>
-          </Form>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={modalopen}>
-            Close
-          </Button>
-          <Button variant="primary" onClick={screenshotUpload}>
-            Submit
-          </Button>
-        </Modal.Footer>
-      </Modal> */}
-
       <div className="portalstatusdiv">
         {loader && <div class="loader"></div>}
         <Container>
@@ -267,10 +234,8 @@ function ScreenshotAssessment() {
                 ))
               ) : (
                 <tr className="emptyrow">
-                  <td colSpan="5">No Assessment available</td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
+                  <td colSpan="8">No Assessment available</td>
+        
                 </tr>
               )}
             </tbody>
@@ -279,7 +244,7 @@ function ScreenshotAssessment() {
             {prevPageUrl && (
               <Button
                 variant="outline-primary"
-                onClick={() => fetchNotifications(prevPageUrl)}
+                onClick={() => setCurrentPage((prev) => prev - 1)}
               >
                 Previous
               </Button>
@@ -287,7 +252,7 @@ function ScreenshotAssessment() {
             {nextPageUrl && (
               <Button
                 variant="outline-primary"
-                onClick={() => fetchNotifications(nextPageUrl)}
+                onClick={() => setCurrentPage((prev) => prev + 1)}
               >
                 Next
               </Button>
