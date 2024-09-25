@@ -24,6 +24,7 @@ const ContentCreationPage = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [cache, setCache] = useState({});
 
+  // Fetch existing content for each assignment
   const fetchExistingContent = async (assignmentId, contentType, headers) => {
     try {
       let endpoint;
@@ -44,7 +45,7 @@ const ContentCreationPage = () => {
         `${baseURL}${endpoint}?keyword=${assignmentId}`,
         { headers }
       );
-      return response.data.results; // Return array of content items
+      return response.data.results;
     } catch (error) {
       console.error(`Error fetching existing ${contentType}:`, error);
       return [];
@@ -56,7 +57,6 @@ const ContentCreationPage = () => {
       setIsLoading(true);
       try {
         if (cache[page]) {
-          // Use cached data if available
           setAssignments(cache[page].assignments);
           setExistingContent(cache[page].existingContent);
           setTotalPages(cache[page].totalPages);
@@ -76,7 +76,7 @@ const ContentCreationPage = () => {
             { headers }
           );
           const assignmentsData = response.data.results;
-          const totalPagesData = response.data.total_pages; // Assuming the backend returns total_pages
+          const totalPagesData = response.data.total_pages;
 
           // Fetch existing content for each assignment
           const contentPromises = assignmentsData.map((assignment) =>
@@ -89,12 +89,12 @@ const ContentCreationPage = () => {
           const contentResults = await Promise.all(contentPromises);
           const contentMap = {};
           contentResults.forEach((content, index) => {
-            contentMap[assignmentsData[index].id] = content; // Store all content items
+            contentMap[assignmentsData[index].id] = content;
           });
 
           // Update state and cache
           setAssignments(assignmentsData);
-          setExistingContent(contentMap); // Store array of content items for each assignment
+          setExistingContent(contentMap);
           setTotalPages(totalPagesData);
           setCache((prevCache) => ({
             ...prevCache,
@@ -119,6 +119,44 @@ const ContentCreationPage = () => {
     },
     [cache]
   );
+
+  const handleAcceptAssignment = async (assignmentId) => {
+    setIsLoading(true);
+    try {
+      const accessToken = localStorage.getItem("accessToken");
+      const headers = {
+        Authorization: `Token ${accessToken}`,
+        "Content-Type": "application/json",
+      };
+
+      // Send the request to acknowledge the assignment
+      await axios.patch(
+        `${baseURL}${KeywordAssignment}${assignmentId}/`,
+        {
+          is_acknowledged: true,
+          acknowledged_at: new Date().toISOString(),
+        },
+        { headers }
+      );
+
+      // Update the specific assignment in the state
+      setAssignments((prevAssignments) =>
+        prevAssignments.map((assignment) =>
+          assignment.id === assignmentId
+            ? { ...assignment, is_acknowledged: true }
+            : assignment
+        )
+      );
+
+      // Display success message
+      toast.success("Assignment accepted successfully");
+    } catch (error) {
+      console.error("Error accepting assignment:", error);
+      toast.error("Failed to accept assignment. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
   const handleUploadContent = async () => {
     setIsLoading(true);
     try {
@@ -161,43 +199,35 @@ const ContentCreationPage = () => {
         });
       }
 
-      // Update the specific assignment's content in the state
-      setExistingContent((prevContent) => {
-        const updatedContent = [
+      setExistingContent((prevContent) => ({
+        ...prevContent,
+        [currentAssignment.id]: [
           ...(prevContent[currentAssignment.id] || []),
           response.data,
-        ];
-        return {
-          ...prevContent,
-          [currentAssignment.id]: updatedContent,
-        };
-      });
+        ],
+      }));
 
-      // Update the cache with the new content
-      setCache((prevCache) => {
-        const updatedCache = {
-          ...prevCache,
-          [currentPage]: {
-            ...prevCache[currentPage],
-            existingContent: {
-              ...prevCache[currentPage].existingContent,
-              [currentAssignment.id]: [
-                ...(prevCache[currentPage].existingContent[
-                  currentAssignment.id
-                ] || []),
-                response.data,
-              ],
-            },
+      setCache((prevCache) => ({
+        ...prevCache,
+        [currentPage]: {
+          ...prevCache[currentPage],
+          existingContent: {
+            ...prevCache[currentPage].existingContent,
+            [currentAssignment.id]: [
+              ...(prevCache[currentPage].existingContent[
+                currentAssignment.id
+              ] || []),
+              response.data,
+            ],
           },
-        };
-        return updatedCache;
-      });
+        },
+      }));
 
       setShowModal(false);
       toast.success("Content uploaded successfully");
     } catch (error) {
       console.error("Error uploading content:", error);
-      toast.error("Failed to upload content. Please try again.");
+      toast.error("Failed to upload content.");
     } finally {
       setIsLoading(false);
     }
@@ -222,14 +252,6 @@ const ContentCreationPage = () => {
     setModalContent({});
     setShowModal(true);
     setCurrentAssignment(assignment);
-
-    // Ensure existingContent[assignment.id] is always an array
-    setExistingContent((prevContent) => ({
-      ...prevContent,
-      [assignment.id]: Array.isArray(prevContent[assignment.id])
-        ? prevContent[assignment.id]
-        : [],
-    }));
   };
 
   const handlePageChange = (newPage) => {
@@ -243,18 +265,17 @@ const ContentCreationPage = () => {
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
-    const formattedDate = `${date.getDate().toString().padStart(2, "0")}/${(
+    return `${date.getDate().toString().padStart(2, "0")}/${(
       date.getMonth() + 1
     )
       .toString()
-      .padStart(2, "0")}/${date.getFullYear()}`;
-    const formattedTime = date.toLocaleString("en-US", {
+      .padStart(2, "0")}/${date.getFullYear()}, ${date.toLocaleString("en-US", {
       hour: "2-digit",
       minute: "2-digit",
       hour12: true,
-    });
-    return `${formattedDate}, ${formattedTime}`;
+    })}`;
   };
+
   return (
     <>
       <HabotAppBar />
@@ -275,12 +296,11 @@ const ContentCreationPage = () => {
               </tr>
             </thead>
             <tbody>
-              {assignments
-                .filter((assignment) => existingContent[assignment.id])
-                .flatMap((assignment) =>
+              {assignments.flatMap((assignment) =>
+                existingContent[assignment.id] &&
+                existingContent[assignment.id].length > 0 ? (
                   existingContent[assignment.id].map((content, index) => (
                     <tr key={`${assignment.id}-${content.id}`}>
-                      {/* Only show assignment details in the first row of the group */}
                       {index === 0 && (
                         <>
                           <td rowSpan={existingContent[assignment.id].length}>
@@ -308,8 +328,6 @@ const ContentCreationPage = () => {
                           </td>
                         </>
                       )}
-
-                      {/* Render the content status and actions for each file */}
                       <td>{content.status}</td>
                       <td>
                         <div className="actionbuttons">
@@ -329,7 +347,7 @@ const ContentCreationPage = () => {
                               Reupload
                             </Button>
                           )}
-                          {!content.status && (
+                          {!content.status && assignment.is_acknowledged && (
                             <Button
                               variant="outline-primary"
                               onClick={() => {
@@ -346,7 +364,45 @@ const ContentCreationPage = () => {
                       </td>
                     </tr>
                   ))
-                )}
+                ) : (
+                  <tr key={assignment.id}>
+                    <td>
+                      {assignment.keyword_info.keyword_file.sector_info.name}
+                    </td>
+                    <td>{assignment.keyword_info.name}</td>
+                    <td>{assignment.content_type}</td>
+                    <td>{formatDate(assignment.assigned_at)}</td>
+                    <td>{assignment.creation_instructions || "-"}</td>
+                    <td>
+                      {assignment.is_acknowledged ? "Accepted" : "Not Accepted"}
+                    </td>
+                    <td>-</td>
+                    <td>
+                      {!assignment.is_acknowledged && (
+                        <Button
+                          variant="outline-primary"
+                          onClick={() => handleAcceptAssignment(assignment.id)}
+                        >
+                          Accept
+                        </Button>
+                      )}
+                      {assignment.is_acknowledged && (
+                        <Button
+                          variant="outline-primary"
+                          onClick={() => {
+                            setModalType(assignment.content_type);
+                            setModalContent({});
+                            setShowModal(true);
+                            setCurrentAssignment(assignment);
+                          }}
+                        >
+                          Upload
+                        </Button>
+                      )}
+                    </td>
+                  </tr>
+                )
+              )}
             </tbody>
           </Table>
           <div className="pagination-controls">
