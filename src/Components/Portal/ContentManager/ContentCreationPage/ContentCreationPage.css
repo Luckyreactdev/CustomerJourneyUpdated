@@ -1,45 +1,281 @@
-.container_form {
-  margin: 40px;
+/* PortalStatus.css */
+
+.container {
+  margin-top: 20px;
 }
 
-.form_page {
-  background: rgba(245, 248, 253, 1);
-  border-radius: 20px;
-  padding: 2% 2%;
-}
-
-.form_page_sub {
-  background: rgba(255, 255, 255, 1);
-  border-radius: 20px;
-  padding: 1% 3% 3% 3%;
-}
-
-.form_page_sub .form-label {
-  font-weight: 500;
-  font-size: 14px;
-}
-
-.form_page_sub .form-control {
-  background: rgba(249, 249, 249, 1);
-  border: none;
-}
-
-.form-field-TM input::placeholder,
-.form-field-TM textarea::placeholder {
-  font-style: italic;
-  font-size: 13px;
-  color: rgba(151, 151, 151, 1);
-}
-
-.sub_title_form {
-  font-size: 18px;
-  font-weight: 600;
+h1 {
+  text-align: center;
   margin-bottom: 20px;
-  display: block;
+  font-size: 2.5rem;
+  color: #343a40;
 }
 
-@media only screen and (max-width: 945px) {
-  .container_form {
-    margin-top: 110px;
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  border: 1px solid #dee2e6; /* Add border to the table */
+}
+
+.table thead {
+  background-color: #f5f8fd;
+  color: black;
+}
+
+.table thead th {
+  padding: 15px;
+  text-align: left;
+  border: 1px solid #dee2e6; /* Add border to table headers */
+}
+
+.table tbody tr {
+  background-color: #f8f9fa;
+  transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+  background-color: #e9ecef;
+}
+
+.table tbody td {
+  padding: 15px;
+  text-align: left;
+  border: 1px solid #dee2e6; /* Add border to table cells */
+}
+
+.table tbody td button {
+  margin: 0;
+  padding: 8px 12px;
+}
+
+.table tbody td button:disabled {
+  background-color: #ced4da;
+  cursor: not-allowed;
+}
+
+.table tbody td:last-child {
+  text-align: center;
+}
+
+.button-outline-primary {
+  color: #007bff;
+  border-color: #007bff;
+  background-color: transparent;
+  padding: 8px 12px;
+  border-radius: 4px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.button-outline-primary:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+.button-outline-primary:disabled {
+  background-color: #e9ecef;
+  color: #adb5bd;
+}
+
+.status-accepted {
+  color: green;
+  font-weight: bold;
+}
+
+.status-not-accepted {
+  color: red;
+  font-weight: bold;
+}
+
+.ReactModalPortal .ReactModal__Overlay {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+  z-index: 9999;
+  color: white;
+}
+
+.App .portalstatusdiv > .container {
+  margin-top: 40px;
+}
+
+.portalstatusdiv h1 {
+  font-size: 30px;
+  text-align: left;
+}
+
+.table tr .btn-outline-primary {
+  height: 30px;
+  font-size: 13px;
+  line-height: 1em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5px;
+}
+
+/* Table Data */
+
+.table tr input[type="text"] {
+  float: left;
+  outline: none;
+  background: rgb(209, 209, 209);
+  border: 1px solid gray;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* Actionbutton */
+.table tr .actionbuttons .actionbutton_keywordsbutton {
+  display: flex;
+  gap: 10px;
+}
+
+/* Input */
+.table tr .feedbackdiv input[type="text"] {
+  background-color: transparent;
+}
+
+.feedbackdiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+}
+
+.portalstatusdiv .paginationdiv {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 20px;
+}
+
+.table tbody .emptyrow td:nth-child(1) {
+  text-align: center;
+}
+
+/* loader css */
+/* From Uiverse.io by satyamchaudharydev */
+.loader-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.loader {
+  display: block;
+  --height-of-loader: 4px;
+  --loader-color: #0071e2;
+  width: 130px;
+  height: var(--height-of-loader);
+  border-radius: 30px;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+.loader::before {
+  content: "";
+  position: absolute;
+  background: var(--loader-color);
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  border-radius: 30px;
+  animation: moving 1s ease-in-out infinite;
+}
+
+@keyframes moving {
+  50% {
+    width: 100%;
   }
+
+  100% {
+    width: 0;
+    right: 0;
+    left: unset;
+  }
+}
+
+/* Loader */
+.portalstatusdiv .loader {
+  position: fixed;
+  top: 50%;
+  left: 45%;
+}
+
+/* Keyword Cards */
+.keyword-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+}
+
+.keyword-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  transition: box-shadow 0.3s ease;
+}
+
+.keyword-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.keyword-card .card-body {
+  padding: 1rem;
+}
+
+.keyword-card .card-title {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.keyword-card .card-text {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Modal styles */
+.modal-dialog {
+  max-width: 80%;
+}
+
+.modal-body {
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* Pagination styles */
+.pagination {
+  justify-content: center;
+}
+
+.page-item.active .page-link {
+  background-color: #007bff;
+  border-color: #007bff;
+}
+
+.page-link {
+  color: #007bff;
+}
+
+.page-link:hover {
+  color: #0056b3;
+}
+
+/* Pagination controls */
+.pagination-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination-controls span {
+  margin: 0 10px;
 }
